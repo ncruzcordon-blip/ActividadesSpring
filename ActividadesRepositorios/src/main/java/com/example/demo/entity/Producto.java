@@ -1,10 +1,13 @@
 package com.example.demo.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -21,6 +24,10 @@ public class Producto {
 	private double precio;
 	
 	private int stock;
+	
+	@ManyToOne
+	@JoinColumn(name="categoria_id")
+	private Categoria categoria;
 
 	public int getId() {
 		return id;
@@ -59,11 +66,20 @@ public class Producto {
 		return "Producto [id=" + id + ", nombre=" + nombre + ", precio=" + precio + ", stock=" + stock + "]";
 	}
 
-	public Producto( String nombre, double precio, int stock) {
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
+	public Producto(String nombre, double precio, int stock, Categoria categoria) {
 		super();
 		this.nombre = nombre;
 		this.precio = precio;
 		this.stock = stock;
+		this.categoria = categoria;
 	}
 
 	public Producto() {
