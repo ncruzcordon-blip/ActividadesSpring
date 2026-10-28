@@ -2,6 +2,8 @@ package com.example.demo.Config;
 
 import java.util.HashSet;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,10 +12,15 @@ import com.example.demo.entity.Categoria;
 import com.example.demo.entity.Producto;
 import com.example.demo.repository.RepositorioCategoria;
 import com.example.demo.repository.RepositorioProducto;
+import com.example.demo.services.ProductService;
 
 @Configuration
 public class CommandLine {
-
+	
+	@Autowired
+	@Qualifier("productService")
+	private ProductService productService;
+	
 	@Bean
 	CommandLineRunner productosDeprueba(RepositorioProducto productoR, RepositorioCategoria categoriaR) {
 	    return args -> {
@@ -31,9 +38,31 @@ public class CommandLine {
 	        Producto producto3 = new Producto("Pantalla LED", 154.00, 50, informatica);
 
 	        // 4. Guardar los productos
-	        productoR.save(producto1);
-	        productoR.save(producto2);
-	        productoR.save(producto3);
+	        System.out.println("GUARDAR PRODUCTOS CON SERVICES");
+	        productService.addProduct(producto1);
+	        productService.addProduct(producto2);
+	        productService.addProduct(producto3);
+	        
+	        System.out.println("\nLISTAR PRODUCTOS CON SERVICES");
+	        for(Producto p: productService.listAllProducts()) {
+	        	System.out.println(p.toString());
+	        }
+	        
+	        System.out.println("BUSCAR PRODUCTO CON SERVICES");
+	        productService.findById(producto1.getId());
+	        
+	        System.out.println("ELIMINAR PRODUCTOS CON SERVICES");
+	        productService.removeProduct(producto2.getId());
+	        
+	        System.out.println("ACTUALIZAR PRODUCTOS CON SERVICES");
+	        producto1.setNombre("Teclado nuevo");
+	        productService.updateProduct(producto1);
+
+	        
+	        System.out.println("\nLISTAR PRODUCTOS CON SERVICES");
+	        for(Producto p: productService.listAllProducts()) {
+	        	System.out.println(p.toString());
+	        }
 	    };
 	}
 }
