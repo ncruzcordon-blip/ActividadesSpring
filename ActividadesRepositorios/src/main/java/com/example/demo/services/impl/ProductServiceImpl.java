@@ -23,7 +23,7 @@ public class ProductServiceImpl implements ProductService{
 
 	@Override
 	public Producto findById(int id) {
-		return productRepository.getReferenceById(id);
+		return productRepository.findById(id).orElse(null);
 	}
 
 	@Override
@@ -41,6 +41,8 @@ public class ProductServiceImpl implements ProductService{
 		productRepository.deleteById(id);
 		return 0;
 	}
+	
+	
 	
 	
 }
