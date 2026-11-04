@@ -36,12 +36,16 @@ public class CommandLine {
 	        Producto producto1 = new Producto("Teclado", 50.54, 12, accesorios);
 	        Producto producto2 = new Producto("Ratón inalámbrico", 20.04, 2, accesorios);
 	        Producto producto3 = new Producto("Pantalla LED", 154.00, 50, informatica);
-
+	        Producto producto4 = new Producto("Teclados", 150.54, 2, accesorios);
+	        Producto producto5 = new Producto("Teclas", 3.14, 32, accesorios);
+	        
 	        // 4. Guardar los productos
 	        System.out.println("GUARDAR PRODUCTOS CON SERVICES");
 	        productService.addProduct(producto1);
 	        productService.addProduct(producto2);
 	        productService.addProduct(producto3);
+	        productService.addProduct(producto4);
+	        productService.addProduct(producto5);
 	        
 	        System.out.println("\nLISTAR PRODUCTOS CON SERVICES");
 	        for(Producto p: productService.listAllProducts()) {
@@ -61,6 +65,44 @@ public class CommandLine {
 	        
 	        System.out.println("\nLISTAR PRODUCTOS CON SERVICES");
 	        for(Producto p: productService.listAllProducts()) {
+	        	System.out.println(p.toString());
+	        }
+	        
+	        System.out.println("\nLISTAR PRODUCTOS CON NOMBRE");
+	        for(Producto p: productService.listAllProducts()) {
+	        	String nombreRecuperado = productService.findByNombre("Teclados");
+	        	if(p.getNombre().equalsIgnoreCase(nombreRecuperado)){
+	        		System.out.println(p.toString());
+	        	}
+	        }
+	        
+	        System.out.println("\nLISTAR PRODUCTOS CON NOMBRE PARCIAL");
+	        for(Producto p: productService.findByNombreContaining("Tecla")) {
+	        	System.out.println(p.toString());
+	        }
+	        
+	        System.out.println("\nINTERVALO DE PRECIO");
+	        for(Producto p: productService.findByPrecioBetween(4, 154)) {
+	        	System.out.println(p.toString());
+	        }
+	        
+	        System.out.println("\nORDENAR PRODUCTOS POR NOMBRE ASCENDENTE");
+	        for(Producto p: productService.findByNombreAsc()) {
+	        	System.out.println(p.toString());
+	        }
+	        
+	        System.out.println("\nORDENAR PRODUCTOS POR NOMBRE DESCENDENTE");
+	        for(Producto p: productService.findByNombreDesc()) {
+	        	System.out.println(p.toString());
+	        }
+	        
+	        System.out.println("\nORDENAR PRODUCTOS POR PRECIO ASCENDENTE");
+	        for(Producto p: productService.findByPrecioAsc()) {
+	        	System.out.println(p.toString());
+	        }
+	        
+	        System.out.println("\nORDENAR PRODUCTOS POR PRECIO DESCENDENTE");
+	        for(Producto p: productService.findByPrecioDesc()) {
 	        	System.out.println(p.toString());
 	        }
 	    };

@@ -11,5 +11,12 @@ public interface ProductService {
 	List<Producto> listAllProducts();
 	Producto updateProduct(Producto producto);
 	int removeProduct(int id);
+	String findByNombre(String nombre);
+	List<Producto> findByNombreContaining(String texto);
+	List<Producto> findByPrecioBetween(Integer min, Integer max);
+	List<Producto> findByNombreAsc();
+	List<Producto> findByNombreDesc();
+	List<Producto> findByPrecioAsc();
+	List<Producto> findByPrecioDesc();
 
 }
