@@ -68,6 +68,7 @@ public class CommandLine {
 	        	System.out.println(p.toString());
 	        }
 	        
+	        //SELECT * FROM productos WHERE nombre="Teclados";
 	        System.out.println("\nLISTAR PRODUCTOS CON NOMBRE");
 	        for(Producto p: productService.listAllProducts()) {
 	        	String nombreRecuperado = productService.findByNombre("Teclados");
@@ -76,34 +77,47 @@ public class CommandLine {
 	        	}
 	        }
 	        
+	        //SELECT * FROM productos WHERE nombre LIKE %Tecla%;
 	        System.out.println("\nLISTAR PRODUCTOS CON NOMBRE PARCIAL");
 	        for(Producto p: productService.findByNombreContaining("Tecla")) {
 	        	System.out.println(p.toString());
 	        }
 	        
+	        //SELECT * FROM productos WHERE precio BETWEEN 4 AND 154;
 	        System.out.println("\nINTERVALO DE PRECIO");
 	        for(Producto p: productService.findByPrecioBetween(4, 154)) {
 	        	System.out.println(p.toString());
 	        }
 	        
+	        //SELECT * FROM productos ORDER BY nombre ASC;
 	        System.out.println("\nORDENAR PRODUCTOS POR NOMBRE ASCENDENTE");
 	        for(Producto p: productService.findByNombreAsc()) {
 	        	System.out.println(p.toString());
 	        }
 	        
+	        //SELECT * FROM productos ORDER BY nombre DESC;
 	        System.out.println("\nORDENAR PRODUCTOS POR NOMBRE DESCENDENTE");
 	        for(Producto p: productService.findByNombreDesc()) {
 	        	System.out.println(p.toString());
 	        }
 	        
+	        //SELECT * FROM productos ORDER BY precio ASC;
 	        System.out.println("\nORDENAR PRODUCTOS POR PRECIO ASCENDENTE");
 	        for(Producto p: productService.findByPrecioAsc()) {
 	        	System.out.println(p.toString());
 	        }
 	        
+	      //SELECT * FROM productos ORDER BY precio DESC;
 	        System.out.println("\nORDENAR PRODUCTOS POR PRECIO DESCENDENTE");
 	        for(Producto p: productService.findByPrecioDesc()) {
 	        	System.out.println(p.toString());
+	        }
+	        
+	        //SELECT * FROM productos WHERE categoria.nombre = "Informática"
+	        System.out.println("\nORDENAR PRODUCTOS POR NOMBRE DE CATEGORIA");
+	        for(Producto p: productService.findByCategoriaNombre("Informática")) {
+	        		System.out.println(p.toString());
+	        	
 	        }
 	    };
 	}

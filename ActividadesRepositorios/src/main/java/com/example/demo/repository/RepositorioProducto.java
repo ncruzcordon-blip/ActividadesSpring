@@ -15,5 +15,9 @@ public interface RepositorioProducto extends JpaRepository<Producto, Integer> {
 	//List<Producto> findByOrderByNombreDesc();
 	List<Producto> findByOrderByPrecioDesc();
 	List<Producto> findByOrderByPrecioAsc();
+	
+	// Tenemos que ver como acceder a través de un método findBy al nombre de la categoria del producto
+	List<Producto> findByCategoriaNombre(String nombre);
+	
 }
   

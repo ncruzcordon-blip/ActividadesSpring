@@ -18,5 +18,6 @@ public interface ProductService {
 	List<Producto> findByNombreDesc();
 	List<Producto> findByPrecioAsc();
 	List<Producto> findByPrecioDesc();
+	List<Producto> findByCategoriaNombre(String Nombre);
 
 }

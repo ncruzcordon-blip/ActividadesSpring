@@ -78,6 +78,12 @@ public class ProductServiceImpl implements ProductService{
 		return productRepository.findByOrderByPrecioDesc();
 	}
 
+	@Override
+	public List<Producto> findByCategoriaNombre(String Nombre) {
+		return productRepository.findByCategoriaNombre(Nombre);
+	}
+
+	
 
 	
 	
