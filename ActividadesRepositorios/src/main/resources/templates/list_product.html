@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Productos</title>
+</head>
+<body>
+
+    <h1>Listado de Productos</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Categoría</th>
+                <th colspan="2">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="p : ${productos}">
+                <!-- Uso de th:text para mostrar datos -->
+                <td th:text="${p.nombre}">Nombre</td>
+                <td th:text="${p.precio}">0.0</td>
+                <td th:text="${p.stock}">0</td>
+                <td th:text="${p.categoria != null ? p.categoria.nombre : 'Sin categoría'}">Categoría</td>
+                
+                <!-- Enlace de Editar -->
+                <td>
+                    <a th:href="@{/producto/editar(id=${p.id})}">Editar</a>
+                </td>
+                
+                <td>
+                    <form th:action="@{/producto/eliminar}" method="post" style="display:inline;">
+                        <input type="hidden" name="id" th:value="${p.id}" />
+                        <button type="submit" onclick="return confirm('¿Seguro que deseas eliminar este producto?');">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p th:if="${#lists.isEmpty(productos)}">No hay productos disponibles.</p>
+
+    <br>
+    <a th:href="@{/producto/nuevo}">
+        <button type="button">Añadir Producto</button>
+    </a>
+
+</body>
+</html>
