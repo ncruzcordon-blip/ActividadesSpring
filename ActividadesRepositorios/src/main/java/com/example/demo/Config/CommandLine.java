@@ -17,7 +17,7 @@ import com.example.demo.services.ProductService;
 @Configuration
 public class CommandLine {
 	
-	@Autowired
+	/*@Autowired
 	@Qualifier("productService")
 	private ProductService productService;
 	
@@ -120,5 +120,5 @@ public class CommandLine {
 	        	
 	        }
 	    };
-	}
+	}*/
 }
